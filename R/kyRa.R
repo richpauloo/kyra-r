@@ -3,10 +3,10 @@
 # ------------------------------------------------------------------------
 
 # fist some nonsense
-#install.packages("cowsay")
+# install.packages("cowsay")
 library(cowsay)
 say("Use the foRce Kyra!", "yoda")
-say("wazzup", sample(names(animals), 1))
+say("twizzlers", sample(names(animals), 1))
 
 # this is a comment. comments in .R scripts start with a #. Use # to 
 # leave yourself notes and comment out code when you're scripting. It's
@@ -31,12 +31,30 @@ nrow(mtcars)   # this is a built-in data.frame, which has rows
 length(mtcars) # the length of the data.frame is the number of columns
 ncol(mtcars)   # ncol tells you the number of columns
 ncol(x)        # as you'd expect ncol(x) is also NULL
+head(mtcars)
+View(mtcars)
+
 
 # let's jump right into working with data.frames and plotting, because
 # it's fun and useful
 
-#install.packages("tidyverse")
+# install.packages("tidyverse")
 library(tidyverse)
 
+ggplot(mtcars, aes(mpg, wt, color = factor(cyl))) + 
+  geom_point() + 
+  geom_smooth(method = "lm") + 
+  facet_wrap(~cyl) +
+  facet_wrap(~cyl, scales = "free")
+
+colnames(mtcars)
 
 
+library(leaflet)
+m <- leaflet() %>%
+  addTiles() %>%  # Add default OpenStreetMap map tiles
+  addMarkers(lng=174.768, lat=-36.852, popup="The birthplace of R")
+m  # Print the map
+
+library(mapview)
+mapview(breweries91)
